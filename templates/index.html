@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPU Scheduler Simulator</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Energy-Efficient CPU Scheduler</h1>
+            <p>Simulate different scheduling algorithms and their energy impact</p>
+        </header>
+
+        <div class="simulator-container">
+            <div class="control-panel">
+                <h2>Simulation Parameters</h2>
+                <form id="simulationForm">
+                    <div class="form-group">
+                        <label for="algorithm">Scheduling Algorithm:</label>
+                        <select id="algorithm" name="algorithm">
+                            <option value="energy">Energy-Efficient</option>
+                            <option value="roundRobin">Round Robin</option>
+                            <option value="fifo">First-In-First-Out</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskCount">Number of Tasks: <span id="taskCountValue">15</span></label>
+                        <input type="range" id="taskCount" name="taskCount" min="5" max="50" value="15">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Power Mode:</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="powerMode" value="mobile" checked> Mobile</label>
+                            <label><input type="radio" name="powerMode" value="embedded"> Embedded</label>
+                            <label><input type="radio" name="powerMode" value="performance"> Performance</label>
+                        </div>
+                    </div>
+
+                    <button type="submit">Run Simulation</button>
+                </form>
+            </div>
+
+            <div class="results-panel">
+                <h2>Simulation Results</h2>
+                <div id="loading" class="loading">Running simulation...</div>
+                
+                <div id="results" class="hidden">
+                    <div class="metrics">
+                        <div class="metric-card">
+                            <h3>Energy Used</h3>
+                            <p id="energyValue">--</p>
+                            <small>milliwatt-hours</small>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Avg Latency</h3>
+                            <p id="latencyValue">--</p>
+                            <small>milliseconds</small>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Algorithm</h3>
+                            <p id="algorithmValue">--</p>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="energyChart"></canvas>
+                    </div>
+
+                    <h3>Task Timeline</h3>
+                    <div id="timeline" class="timeline"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
